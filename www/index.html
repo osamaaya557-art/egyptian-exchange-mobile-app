@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title data-i18n="site.title">المصرية للصرافة — أول صرافة مرخّصة في مصر</title>
+    <meta name="theme-color" content="#000094">
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- Alexandria (Arabic) -->
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Poppins (English) -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+
+<!-- Main Styles -->
+<link rel="stylesheet" href="css/style.css">
+
+    
+</head>
+<body>
+
+<script>document.documentElement.classList.add('is-loading');</script>
+
+<!-- ========== PRELOADER ========== -->
+<div class="preloader" id="preloader" role="status" aria-label="جارِ التحميل">
+    <div class="preloader__logo-wrap">
+        <span class="preloader__ring"></span>
+        <svg class="preloader__logo" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+            <g fill="currentColor">
+                <path d="M55.8 16.7H71.3V52.7H55.8V26.7H47.5Z"/>
+                <path d="M55.8 16.7H71.3V52.7H55.8V26.7H47.5Z" transform="rotate(90 50 50)"/>
+                <path d="M55.8 16.7H71.3V52.7H55.8V26.7H47.5Z" transform="rotate(180 50 50)"/>
+                <path d="M55.8 16.7H71.3V52.7H55.8V26.7H47.5Z" transform="rotate(270 50 50)"/>
+            </g>
+        </svg>
+    </div>
+    <span class="preloader__text" data-i18n="site.title">المصرية للصرافة</span>
+    <span class="preloader__bar"><span></span></span>
+</div>
+
+<a class="skip" href="#main" data-i18n="common.skip">تخطَّ إلى المحتوى</a>
+
+<!-- ========== UTILITY BAR ========== -->
+<div class="utility">
+    <div class="wrap">
+        <ul class="utility__list">
+            <li>
+                <a href="tel:+20225746100">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/>
+                    </svg>
+                    <span dir="ltr">02 25746100</span>
+                </a>
+            </li>
+            <li>
+                <a href="#/branches">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                        <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                    <span data-i18n="utility.branches.count">26 فرعاً في 10 محافظات</span>
+                </a>
+            </li>
+            <li>
+                <a href="mailto:info@egexchange.com">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <rect x="2" y="4" width="20" height="16" rx="2"/>
+                        <path d="m22 7-10 6L2 7"/>
+                    </svg>
+                    <span>info@egexchange.com</span>
+                </a>
+            </li>
+        </ul>
+        <div class="utility__lang">
+            <button class="lang-btn" data-lang="ar" onclick="EGX_LANG.setLang('ar')">عربي</button>
+            <span style="opacity:.3;margin:0 4px">|</span>
+            <button class="lang-btn" data-lang="en" onclick="EGX_LANG.setLang('en')">EN</button>
+        </div>
+    </div>
+</div>
+
+<!-- ========== HEADER ========== -->
+<header class="header" id="siteHeader">
+    <div class="wrap nav">
+        <a class="logo" href="#/home" aria-label="المصرية للصرافة">
+            <svg class="logo__mark" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+                <g fill="currentColor">
+                    <path d="M55.8 16.7H71.3V52.7H55.8V26.7H47.5Z"/>
+                    <path d="M55.8 16.7H71.3V52.7H55.8V26.7H47.5Z" transform="rotate(90 50 50)"/>
+                    <path d="M55.8 16.7H71.3V52.7H55.8V26.7H47.5Z" transform="rotate(180 50 50)"/>
+                    <path d="M55.8 16.7H71.3V52.7H55.8V26.7H47.5Z" transform="rotate(270 50 50)"/>
+                </g>
+            </svg>
+            <span class="logo__type">
+                <span class="logo__ar" data-i18n="site.name">المصرية للصرافة</span>
+                <span class="logo__en" data-i18n="site.name.en">Egyptian Exchange</span>
+            </span>
+        </a>
+        <nav class="nav__menu" aria-label="التنقل الرئيسي">
+            <a href="#/home" data-nav="home" data-i18n="nav.home">الرئيسية</a>
+            <a href="#/about" data-nav="about" data-i18n="nav.about">عن الشركة</a>
+            <a href="#/services" data-nav="services" data-i18n="nav.services">خدماتنا</a>
+            <a href="#/branches" data-nav="branches" data-i18n="nav.branches">الفروع</a>
+            <a href="#/contact" data-nav="contact" data-i18n="nav.contact">تواصل معنا</a>
+        </nav>
+        <div class="nav__actions">
+            <a class="btn btn--primary btn--sm" href="#/branches">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                    <circle cx="12" cy="10" r="3"/>
+                </svg>
+                <span data-i18n="nav.nearest">أقرب فرع إليك</span>
+            </a>
+            <button class="nav__toggle" id="navToggle" aria-label="فتح القائمة" aria-expanded="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M3 6h18M3 12h18M3 18h18"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- ========== DRAWER ========== -->
+<div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="القائمة">
+    <div class="drawer__scrim" data-close></div>
+    <div class="drawer__panel">
+        <div class="drawer__head">
+            <a class="logo" href="#/home">
+                <svg class="logo__mark" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+                    <g fill="currentColor">
+                        <path d="M55.8 16.7H71.3V52.7H55.8V26.7H47.5Z"/>
+                        <path d="M55.8 16.7H71.3V52.7H55.8V26.7H47.5Z" transform="rotate(90 50 50)"/>
+                        <path d="M55.8 16.7H71.3V52.7H55.8V26.7H47.5Z" transform="rotate(180 50 50)"/>
+                        <path d="M55.8 16.7H71.3V52.7H55.8V26.7H47.5Z" transform="rotate(270 50 50)"/>
+                    </g>
+                </svg>
+                <span class="logo__type">
+                    <span class="logo__ar" data-i18n="site.name">المصرية للصرافة</span>
+                    <span class="logo__en" data-i18n="site.name.en">Egyptian Exchange</span>
+                </span>
+            </a>
+            <button class="drawer__close" data-close aria-label="إغلاق">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M18 6 6 18M6 6l12 12"/>
+                </svg>
+            </button>
+        </div>
+        <nav aria-label="التنقل للجوال">
+            <a href="#/home" data-nav="home" data-i18n="nav.home">الرئيسية</a>
+            <a href="#/about" data-nav="about" data-i18n="nav.about">عن الشركة</a>
+            <a href="#/services" data-nav="services" data-i18n="nav.services">خدماتنا</a>
+            <a href="#/branches" data-nav="branches" data-i18n="nav.branches">الفروع</a>
+            <a href="#/contact" data-nav="contact" data-i18n="nav.contact">تواصل معنا</a>
+        </nav>
+        <div class="drawer__foot">
+            <a class="btn btn--primary btn--block" href="#/branches">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                    <circle cx="12" cy="10" r="3"/>
+                </svg>
+                <span data-i18n="nav.nearest">أقرب فرع إليك</span>
+            </a>
+            <a class="btn btn--ghost btn--block" href="tel:+20225746100">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/>
+                </svg>
+                <span dir="ltr">02 25746100</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- ========== MAIN CONTENT ========== -->
+<div id="main">
+
+    <!-- ============================================================ -->
+    <!-- PAGE: HOME -->
+    <!-- ============================================================ -->
+    <section class="page is-on" data-page="home">
+
+        <!-- ============================================================
+             HERO SECTION
+             ============================================================ -->
+      
+
+        <!-- ============================================================
+             HERO SECTION
+             ============================================================ -->
+        <section class="hero" id="heroSection">
+            <!-- خلفية النقوش الإسلامية -->
+           
+            <div class="wrap hero__inner">
+                
+                <!-- ================= القسم الأيسر (النصوص + الكونفرتر) ================= -->
+                <div class="hero__copy">
+                    
+                    <!-- 1. شارة الترخيص -->
+                    <span class="hero__badge">
+                        <i class="status-dot"></i>
+                        <span data-i18n="hero.badge">مرخّصة من البنك المركزي المصري – ترخيص رقم 1</span>
+                    </span>
+
+                    <!-- 2. العنوان الرئيسي (3 سطور) -->
+                    <h1 class="hero__title">
+                        <span class="hero__title-line" data-i18n="hero.title.line1">أسعار اليوم</span>
+                        <span class="hero__title-line" data-i18n="hero.title.line2">من أول شركة</span>
+                        <span class="hero__title-line" data-i18n="hero.title.line3">صرافة في مصر</span>
+                    </h1>
+
+                    <!-- 3. النص التعريفي -->
+                    <p class="hero__lede" data-i18n="hero.subtitle">
+                        منذ عام 1991 ونحن نضع خبرة أول بيت صرافة مرخّص في مصر بين يديك — صرف عملات بأسعار عادلة، وتنفيذ فوري، وشبكة فروع تمتد من الإسكندرية إلى أسوان.
+                    </p>
+
+                    <!-- 4. الإحصائيات -->
+                    <div class="hero__stats">
+                        <div class="stat-item">
+                            <b data-i18n="hero.stats.branches_num">26</b>
+                            <span data-i18n="hero.stats.branches_label">فرعاً في 10 محافظات</span>
+                        </div>
+                        <div class="stat-item">
+                            <b data-i18n="hero.stats.year_num">1991</b>
+                            <span data-i18n="hero.stats.year_label">سنة التأسيس</span>
+                        </div>
+                        <div class="stat-item">
+                            <b data-i18n="hero.stats.hours_num">12</b>
+                            <span data-i18n="hero.stats.hours_label">ساعة عمل يومياً</span>
+                        </div>
+                    </div>
+
+                    <!-- 5. الأزرار -->
+                    <div class="hero__cta">
+                        <a class="btn btn--light" href="#/contact">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                            </svg>
+                            <span data-i18n="hero.cta.contact">اتصل بنا</span>
+                        </a>
+                        <a class="btn btn--outline-light" href="#/branches">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>
+                            </svg>
+                            <span data-i18n="hero.cta.branches">ابحث عن أقرب فرع</span>
+                        </a>
+                    </div>
+
+                    <!-- 6. أداة تحويل العملات -->
+                    <div class="converter">
+                        <!-- رأس الأداة -->
+                        <div class="converter__head">
+                            <span class="converter__icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M12 6v12M15 9.5c0-1-1.3-1.5-3-1.5s-3 .5-3 1.5 1.3 1.5 3 1.5 3 .5 3 1.5-1.3 1.5-3 1.5-3-.5-3-1.5"/>
+                                </svg>
+                            </span>
+                            <div class="converter__title-wrap">
+                                <h3 class="converter__title" data-i18n="converter.title">احسب قيمة عملتك الآن</h3>
+                                <p class="converter__subtitle" data-i18n="converter.subtitle">أدخل المبلغ واختر العملتين لمعرفة القيمة التقريبية فوراً.</p>
+                            </div>
+                        </div>
+
+                        <!-- أزرار بيع وشراء -->
+                        <div class="converter__transaction">
+                            <div class="converter__transaction-options">
+                                <button type="button" class="converter__transaction-btn is-active" id="convSell" data-i18n="converter.sell">بيع</button>
+                                <button type="button" class="converter__transaction-btn" id="convBuy" data-i18n="converter.buy">شراء</button>
+                            </div>
+                        </div>
+
+                        <!-- الصف الأول: المبلغ + العملة -->
+                        <div class="converter__row">
+                            <div class="form-field">
+                                <label for="convAmount" data-i18n="converter.amount_label">المبلغ</label>
+                                <input type="number" id="convAmount" value="1000" min="0" step="any" inputmode="decimal">
+                            </div>
+                            <div class="form-field">
+                                <label for="convFrom" data-i18n="converter.from">من</label>
+                                <select id="convFrom">
+                                    <option value="USD">🇺🇸 USD - دولار أمريكي</option>
+                                    <option value="EUR">🇪🇺 EUR - يورو</option>
+                                    <option value="GBP">🇬🇧 GBP - جنيه إسترليني</option>
+                                    <option value="SAR">🇸🇦 SAR - ريال سعودي</option>
+                                    <option value="AED">🇦🇪 AED - درهم إماراتي</option>
+                                    <option value="KWD">🇰🇼 KWD - دينار كويتي</option>
+                                    <option value="CAD">🇨🇦 CAD - دولار كندي</option>
+                                    <option value="CHF">🇨🇭 CHF - فرنك سويسري</option>
+                                    <option value="JPY">🇯🇵 JPY - ين ياباني</option>
+                                    <option value="EGP">🇪🇬 EGP - جنيه مصري</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- زر التبديل -->
+                        <div class="converter__swap">
+                            <button type="button" class="converter__swap-btn" id="convSwap" aria-label="تبديل العملات">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M7 16V4M7 4 3 8M7 4l4 4"/>
+                                    <path d="M17 8v12M17 20l4-4M17 20l-4-4"/>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <!-- الصف الثاني: النتيجة + العملة -->
+                        <div class="converter__row">
+                            <div class="form-field form-field--result">
+                                <label for="convResult" data-i18n="converter.result_label">تستلم تقريباً</label>
+<input type="text" id="convResult" lang="en" readonly>
+                            </div>
+                            <div class="form-field">
+                                <label for="convTo" data-i18n="converter.to">إلى</label>
+                                <select id="convTo">
+                                    <option value="EGP" selected>🇪🇬 EGP - جنيه مصري</option>
+                                    <option value="USD">🇺🇸 USD - دولار أمريكي</option>
+                                    <option value="EUR">🇪🇺 EUR - يورو</option>
+                                    <option value="GBP">🇬🇧 GBP - جنيه إسترليني</option>
+                                    <option value="SAR">🇸🇦 SAR - ريال سعودي</option>
+                                    <option value="AED">🇦🇪 AED - درهم إماراتي</option>
+                                    <option value="KWD">🇰🇼 KWD - دينار كويتي</option>
+                                    <option value="CAD">🇨🇦 CAD - دولار كندي</option>
+                                    <option value="CHF">🇨🇭 CHF - فرنك سويسري</option>
+                                    <option value="JPY">🇯🇵 JPY - ين ياباني</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- معلومة إضافية -->
+                        <div class="converter__note">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 16v-4M12 8h.01"/>
+                            </svg>
+                            <span data-i18n="converter.note">الأسعار استرشادية — السعر المعتمد هو المعلن داخل الفرع.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ================= القسم الأيمن (بطاقة الأسعار) ================= -->
+                <div class="rate-card">
+                    <div class="rate-card__head">
+                        <h3 data-i18n="rates.title">أسعار العملات اليوم</h3>
+                        <span class="rate-card__stamp">
+                            <i></i>
+                            <span data-i18n="rates.live">تحديث لحظي</span>
+                        </span>
+                    </div>
+                    
+                    <div id="rateCardsContainer">
+                        <div class="rate-row">
+                            <div class="rate-row__cur">
+                                <div class="rate-row__flag">🇺🇸</div>
+                                <div class="rate-row__name" data-i18n="rates.usd">دولار أمريكي</div>
+                            </div>
+                            <div class="rate-row__val">51.27 <small data-i18n="rates.buy">شراء</small></div>
+                            <div class="rate-row__val">51.37 <small data-i18n="rates.sell">بيع</small></div>
+                        </div>
+                        <div class="rate-row">
+                            <div class="rate-row__cur">
+                                <div class="rate-row__flag">🇬🇧</div>
+                                <div class="rate-row__name" data-i18n="rates.gbp">جنيه إسترليني</div>
+                            </div>
+                            <div class="rate-row__val">69.19 <small data-i18n="rates.buy">شراء</small></div>
+                            <div class="rate-row__val">69.48 <small data-i18n="rates.sell">بيع</small></div>
+                        </div>
+                    </div>
+
+                    <p class="rate-card__note" data-i18n="rates.note">
+                        الأسعار استرشادية وتخضع للتغيّر. السعر المعتمد هو السعر المعلن داخل الفرع وقت تنفيذ العملية.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- TRUST -->
+        <section class="trust">
+            <div class="wrap">
+                <div class="trust__grid">
+                    <div class="trust__item">
+                        <b data-i18n="trust.year">1991</b>
+                        <span data-i18n="trust.established">سنة التأسيس</span>
+                    </div>
+                    <div class="trust__item">
+                        <b data-i18n="trust.branches.count">26 فرعاً</b>
+                        <span data-i18n="trust.branches.label">في 10 محافظات</span>
+                    </div>
+                    <div class="trust__item">
+                        <b data-i18n="trust.hours.count">12 ساعة</b>
+                        <span data-i18n="trust.hours.label">خدمة يومياً</span>
+                    </div>
+                    <div class="trust__item">
+                        <b data-i18n="trust.group.name">المزلاوي جروب</b>
+                        <span data-i18n="trust.group.label">إحدى شركات المجموعة</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICES -->
+        <section class="section">
+            <div class="wrap">
+                <div class="sec-head reveal">
+                    <span class="eyebrow" data-i18n="services.badge">خدماتنا</span>
+                    <h2 class="h2" data-i18n="services.title">كل ما تحتاجه من بيت صرافة واحد</h2>
+                    <p class="lede" data-i18n="services.subtitle">من صرف عملة قبل السفر إلى تغطية احتياجات شركتك من النقد الأجنبي — نتعامل مع كل عملية بالدقة نفسها.</p>
+                </div>
+                <div class="grid-4">
+
+                    <!-- 1. صرف العملات الأجنبية -->
+                    <a class="card reveal" href="#/services--exchange">
+                        <span class="card__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M7 4v13"/>
+                                <path d="m4 14 3 3 3-3"/>
+                                <path d="M17 20V7"/>
+                                <path d="m14 10 3-3 3 3"/>
+                            </svg>
+                        </span>
+                        <h3 data-i18n="services.exchange.title">صرف العملات الأجنبية</h3>
+                        <p data-i18n="services.exchange.desc">بيع وشراء العملات الرئيسية والنادرة بأسعار تنافسية محدّثة على مدار اليوم، وتنفيذ فوري داخل الفرع.</p>
+                        <span class="card__link" data-i18n="common.more">اعرف المزيد <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg></span>
+                    </a>
+
+                    <!-- 2. التزام ورقابة -->
+                    <a class="card reveal" href="#/services--compliance">
+                        <span class="card__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/>
+                                <path d="m9 12 2 2 4-4"/>
+                            </svg>
+                        </span>
+                        <h3 data-i18n="services.compliance.title">التزام ورقابة</h3>
+                        <p data-i18n="services.compliance.desc">تعاملات موثّقة بالكامل ومطابقة لتعليمات البنك المركزي المصري وقواعد مكافحة غسل الأموال.</p>
+                        <span class="card__link" data-i18n="common.more">اعرف المزيد <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg></span>
+                    </a>
+
+                    <!-- 3. شبكة فروع واسعة -->
+                    <a class="card reveal" href="#/branches">
+                        <span class="card__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                        </span>
+                        <h3 data-i18n="services.network.title">شبكة فروع واسعة</h3>
+                        <p data-i18n="services.network.desc">26 فرعاً في 10 محافظات، من القاهرة الكبرى إلى صعيد مصر والدلتا، مع مواعيد عمل ممتدة حتى 11 مساءً.</p>
+                        <span class="card__link" data-i18n="common.more">اعرف المزيد <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg></span>
+                    </a>
+
+                    <!-- 4. خبرة منذ 1991 -->
+                    <a class="card reveal" href="#/about">
+                        <span class="card__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <circle cx="12" cy="8" r="6"/>
+                                <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>
+                            </svg>
+                        </span>
+                        <h3 data-i18n="services.experience.title">خبرة منذ 1991</h3>
+                        <p data-i18n="services.experience.desc">أول شركة صرافة مرخّصة في مصر، بترخيص رقم 1 من البنك المركزي المصري، وأكثر من ثلاثة عقود من الثقة.</p>
+                        <span class="card__link" data-i18n="common.more">اعرف المزيد <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg></span>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- WHY -->
+        <section class="section section--wash">
+            <div class="wrap split">
+                <div class="split__media reveal">
+                    <img src="https://egexchange.com/assets/branch-images/HQ.jpeg" alt="الفرع الرئيسي للمصرية للصرافة بالتحرير، القاهرة" loading="lazy">
+                </div>
+                <div class="split__body reveal">
+                    <span class="eyebrow" data-i18n="why.badge">لماذا المصرية للصرافة</span>
+                    <h2 class="h2" data-i18n="why.title">خبرة مؤسسية، لا مجرد نافذة صرف</h2>
+                    <p class="lede" data-i18n="why.subtitle">نحمل الترخيص رقم ١ من البنك المركزي المصري — وهو ليس رقماً رمزياً، بل مسؤولية نلتزم بها في كل عملية منذ أكثر من ثلاثة عقود.</p>
+                    <ul class="ticks">
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="m8 12 3 3 5-6"/>
+                            </svg>
+                            <span data-i18n="why.point1">شفافية كاملة في السعر: السعر المعلن هو السعر المنفَّذ، بلا عمولات خفية.</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="m8 12 3 3 5-6"/>
+                            </svg>
+                            <span data-i18n="why.point2">تنفيذ فوري وموثّق: إيصال رسمي لكل عملية، ومطابقة كاملة لقواعد مكافحة غسل الأموال.</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="m8 12 3 3 5-6"/>
+                            </svg>
+                            <span data-i18n="why.point3">تغطية جغرافية حقيقية: ٢٦ فرعاً تمتد من القاهرة الكبرى إلى صعيد مصر والدلتا.</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="m8 12 3 3 5-6"/>
+                            </svg>
+                            <span data-i18n="why.point4">مواعيد عمل ممتدة: حتى ١١ مساءً في فروع القاهرة والجيزة، وخدمة أيام الجمعة.</span>
+                        </li>
+                    </ul>
+                    <div>
+                        <a class="btn btn--primary" href="#/about">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M19 12H5"/>
+                                <path d="m12 19-7-7 7-7"/>
+                            </svg>
+                            <span data-i18n="about.button">اقرأ قصة الشركة</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NETWORK -->
+        <section class="section">
+            <div class="wrap">
+                <div class="sec-head reveal">
+                    <span class="eyebrow" data-i18n="network.badge">شبكة الفروع</span>
+                    <h2 class="h2" data-i18n="network.title">نحن في خدمتك أينما كنت</h2>
+                    <p class="lede" data-i18n="network.subtitle">٢٦ فرعاً في ١٠ محافظات، بمواعيد عمل ممتدة وخدمة أيام الجمعة في معظم الفروع.</p>
+                </div>
+
+                <div class="center reveal" style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:820px;margin-inline:auto">
+                    <a class="chip" href="#/branches?gov=cairo">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                        <span data-i18n="gov.cairo">القاهرة</span>
+                    </a>
+                    <a class="chip" href="#/branches?gov=giza">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                        <span data-i18n="gov.giza">الجيزة</span>
+                    </a>
+                    <a class="chip" href="#/branches?gov=minya">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                        <span data-i18n="gov.minya">المنيا</span>
+                    </a>
+                    <a class="chip" href="#/branches?gov=sohag">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                        <span data-i18n="gov.sohag">سوهاج</span>
+                    </a>
+                    <a class="chip" href="#/branches?gov=assiut">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                        <span data-i18n="gov.assiut">أسيوط</span>
+                    </a>
+                    <a class="chip" href="#/branches?gov=qena">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                        <span data-i18n="gov.qena">قنا</span>
+                    </a>
+                    <a class="chip" href="#/branches?gov=luxor">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                        <span data-i18n="gov.luxor">الأقصر</span>
+                    </a>
+                    <a class="chip" href="#/branches?gov=aswan">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                        <span data-i18n="gov.aswan">أسوان</span>
+                    </a>
+                    <a class="chip" href="#/branches?gov=beni_suef">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                        <span data-i18n="gov.beni_suef">بني سويف</span>
+                    </a>
+                    <a class="chip" href="#/branches?gov=dakahlia">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                        <span data-i18n="gov.dakahlia">الدقهلية</span>
+                    </a>
+                </div>
+
+                <div class="center reveal" style="margin-top:34px">
+                    <a class="btn btn--primary" href="#/branches">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                        <span data-i18n="network.cta">استعرض كل الفروع على الخريطة</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        
+
+    </section>
+    <!-- END PAGE: HOME -->
+
+
+    <!-- ============================================================ -->
+    <!-- PAGE: ABOUT -->
+    <!-- ============================================================ -->
+    <section class="page" data-page="about">
+
+        <section class="phero">
+            <svg class="phero__pattern" aria-hidden="true" preserveAspectRatio="xMidYMid slice" viewBox="0 0 600 400">
+                <defs>
+                    <pattern id="pwa" width="78" height="78" patternUnits="userSpaceOnUse" patternTransform="rotate(0)">
+                        <g transform="translate(7 7) scale(0.64)" fill="none" stroke="#D7B25C" stroke-width="3.4" stroke-linejoin="round">
+                            <path d="M55.8 16.7H71.3V52.7H55.8V26.7H47.5Z"/>
+                            <path d="M55.8 16.7H71.3V52.7H55.8V26.7H47.5Z" transform="rotate(90 50 50)"/>
+                            <path d="M55.8 16.7H71.3V52.7H55.8V26.7H47.5Z" transform="rotate(180 50 50)"/>
+                            <path d="M55.8 16.7H71.3V52.7H55.8V26.7H47.5Z" transform="rotate(270 50 50)"/>
+                        </g>
+                    </pattern>
+                </defs>
+                <rect width="600" height="400" fill="url(#pwa)"/>
+            </svg>
+            <div class="wrap phero__inner">
+                <nav class="crumb">
+                    <a href="#/home" data-i18n="nav.home">الرئيسية</a>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+                    <span data-i18n="about.breadcrumb">عن الشركة</span>
+                </nav>
+                <h1 data-i18n="about.title">ثلاثة عقود ونحن نحمل الرقم 1</h1>
+                <p data-i18n="about.subtitle">المصرية للصرافة هي أول شركة صرافة في مصر، تأسست عام 1991 وتحمل الترخيص رقم 1 من البنك المركزي المصري. اليوم نحن إحدى شركات المزلاوي جروب، بشبكة تضم 26 فرعاً في 10 محافظات.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="wrap split">
+                <div class="split__body reveal">
+                    <span class="eyebrow" data-i18n="about.section1.badge">من نحن</span>
+                    <h2 class="h2" data-i18n="about.section1.title">بدأنا حيث بدأت الصرافة المنظّمة في مصر</h2>
+                    <p class="lede" data-i18n="about.section1.desc">حين مُنح الترخيص رقم 1، لم يكن سوق الصرافة الرسمي في مصر قد تشكّل بعد. كان علينا أن نبني ثقة العميل من الصفر — بالسعر المعلن، والإيصال الرسمي، والالتزام الكامل بتعليمات البنك المركزي.</p>
+                    <ul class="ticks">
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg><span data-i18n="about.point1">ترخيص رقم 1 من البنك المركزي المصري</span></li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg><span data-i18n="about.point2">تأسست عام 1991</span></li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg><span data-i18n="about.point3">إحدى شركات المزلاوي جروب</span></li>
+                    </ul>
+                </div>
+                <div class="split__media reveal">
+                    <img src="https://egexchange.com/assets/branch-images/Zamalek.jpeg" alt="فرع الزمالك — المصرية للصرافة" loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        <section class="section section--wash">
+            <div class="wrap">
+                <div class="sec-head reveal">
+                    <span class="eyebrow" data-i18n="about.timeline">مسيرتنا</span>
+                    <h2 class="h2" data-i18n="about.timeline.title">من فرع واحد إلى شبكة وطنية</h2>
+                </div>
+                <div class="timeline" style="max-width:760px;margin-inline:auto">
+                    <div class="tl-item reveal"><b>١٩٩١</b><p data-i18n="about.timeline.1">تأسيس المصرية للصرافة في القاهرة، لتصبح أول شركة صرافة مرخّصة في مصر بترخيص رقم 1 من البنك المركزي المصري.</p></div>
+                    <div class="tl-item reveal"><b data-i18n="about.timeline.2.title">التوسع في القاهرة الكبرى</b><p data-i18n="about.timeline.2.desc">افتتاح فروع التحرير والزمالك ومدينة نصر وروكسي والمهندسين وفيصل والهرم و٦ أكتوبر، لتغطية أكبر تجمعات العملاء في العاصمة.</p></div>
+                    <div class="tl-item reveal"><b data-i18n="about.timeline.3.title">الامتداد إلى الصعيد</b><p data-i18n="about.timeline.3.desc">الوصول إلى المنيا وأسيوط وسوهاج وقنا والأقصر وأسوان — لخدمة مجتمعات لطالما كانت خدمات الصرافة المنظّمة فيها محدودة.</p></div>
+                    <div class="tl-item reveal"><b data-i18n="about.timeline.4.title">اليوم</b><p data-i18n="about.timeline.4.desc">26 فرعاً في 10 محافظات، ضمن المزلاوي جروب، بمواعيد عمل ممتدة تصل إلى 11 مساءً وخدمة أيام الجمعة في معظم الفروع.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="wrap">
+                <div class="sec-head reveal">
+                    <span class="eyebrow" data-i18n="about.values">قيمنا</span>
+                    <h2 class="h2" data-i18n="about.values.title">أربعة مبادئ لا نساوم عليها</h2>
+                </div>
+                <div class="grid-4">
+                    <div class="card reveal">
+                        <span class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></span>
+                        <h3 data-i18n="about.value1.title">الثقة قبل الربح</h3>
+                        <p data-i18n="about.value1.desc">الترخيص رقم ١ لم يأتِ صدفة، والحفاظ عليه يعني أن كل عملية تمرّ بنا موثّقة ومطابقة للتعليمات.</p>
+                    </div>
+                    <div class="card reveal">
+                        <span class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2v20l2.5-1.5L9 22l2.5-1.5L14 22l2.5-1.5L19 22V2l-2.5 1.5L14 2l-2.5 1.5L9 2 6.5 3.5 4 2Z"/><path d="M8 8h8M8 12h6"/></svg></span>
+                        <h3 data-i18n="about.value2.title">سعر واحد معلن</h3>
+                        <p data-i18n="about.value2.desc">ما تراه على الشاشة هو ما تدفعه. لا عمولات خفية ولا فروق تُضاف عند الشباك.</p>
+                    </div>
+                    <div class="card reveal">
+                        <span class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/></svg></span>
+                        <h3 data-i18n="about.value3.title">احترام وقت العميل</h3>
+                        <p data-i18n="about.value3.desc">تنفيذ فوري، صفوف قصيرة، ومواعيد عمل تمتد إلى ما بعد انتهاء يوم العمل التقليدي.</p>
+                    </div>
+                    <div class="card reveal">
+                        <span class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v16"/><path d="M15 9h4a2 2 0 0 1 2 2v10"/><path d="M9 7h2M9 11h2M9 15h2"/></svg></span>
+                        <h3 data-i18n="about.value4.title">حضور محلي حقيقي</h3>
+                        <p data-i18n="about.value4.desc">فروعنا في الصعيد والدلتا ليست مكاتب تمثيل، بل فروع كاملة الخدمات يديرها فريق من المنطقة.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" style="padding-top:0">
+            <div class="wrap">
+                <div class="cta-band reveal">
+                    <svg class="cta-band__pattern" aria-hidden="true" preserveAspectRatio="xMidYMid slice" viewBox="0 0 600 400">
+                        <defs><pattern id="pwc2" width="78" height="78" patternUnits="userSpaceOnUse" patternTransform="rotate(0)"><g transform="translate(7 7) scale(0.64)" fill="none" stroke="#D7B25C" stroke-width="3.4" stroke-linejoin="round"><path d="M55.8 16.7H71.3V52.7H55.8V26.7H47.5Z"/><path d="M55.8 16.7H71.3V52.7H55.8V26.7H47.5Z" transform="rotate(90 50 50)"/><path d="M55.8 16.7H71.3V52.7H55.8V26.7H47.5Z" transform="rotate(180 50 50)"/><path d="M55.8 16.7H71.3V52.7H55.8V26.7H47.5Z" transform="rotate(270 50 50)"/></g></pattern></defs>
+                        <rect width="600" height="400" fill="url(#pwc2)"/>
+                    </svg>
+                    <div>
+                        <h2 class="h2" data-i18n="about.cta.title">زرنا في أقرب فرع</h2>
+                        <p data-i18n="about.cta.subtitle">26 فرعاً في 10 محافظات، بمواعيد عمل ممتدة وخدمة أيام الجمعة.</p>
+                    </div>
+                    <a class="btn btn--light" href="#/branches">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                        <span data-i18n="about.cta.button">خريطة الفروع</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </section>
+    <!-- END PAGE: ABOUT -->
+
+
+    <!-- ============================================================ -->
+    <!-- PAGE: SERVICES -->
+    <!-- ============================================================ -->
+    <section class="page" data-page="services">
+
+        <section class="phero">
+            <svg class="phero__pattern" aria-hidden="true" preserveAspectRatio="xMidYMid slice" viewBox="0 0 600 400">
+                <defs>
+                    <pattern id="pws" width="78" height="78" patternUnits="userSpaceOnUse" patternTransform="rotate(0)">
+                        <g transform="translate(7 7) scale(0.64)" fill="none" stroke="#D7B25C" stroke-width="3.4" stroke-linejoin="round">
+                            <path d="M55.8 16.7H71.3V52.7H55.8V26.7H47.5Z"/>
+                            <path d="M55.8 16.7H71.3V52.7H55.8V26.7H47.5Z" transform="rotate(90 50 50)"/>
+                            <path d="M55.8 16.7H71.3V52.7H55.8V26.7H47.5Z" transform="rotate(180 50 50)"/>
+                            <path d="M55.8 16.7H71.3V52.7H55.8V26.7H47.5Z" transform="rotate(270 50 50)"/>
+                        </g>
+                    </pattern>
+                </defs>
+                <rect width="600" height="400" fill="url(#pws)"/>
+            </svg>
+            <div class="wrap phero__inner">
+                <nav class="crumb">
+                    <a href="#/home" data-i18n="nav.home">الرئيسية</a>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+                    <span data-i18n="services.breadcrumb">خدماتنا</span>
+                </nav>
+                <h1 data-i18n="services.page.title">خدمات صرافة بمعايير مؤسسية</h1>
+                <p data-i18n="services.page.subtitle">سواء كنت مسافراً يجهّز عملة وجهته، أو شركة تغطّي احتياجها من النقد الأجنبي — نتعامل مع كل عملية بالدقة والشفافية نفسها.</p>
+            </div>
+        </section>
+
+        <section class="section" id="exchange">
+            <div class="wrap split">
+                <div class="split__body reveal">
+                    <span class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4v13"/><path d="m4 14 3 3 3-3"/><path d="M17 20V7"/><path d="m14 10 3-3 3 3"/></svg></span>
+                    <h2 class="h2" data-i18n="services.exchange.title">صرف العملات الأجنبية</h2>
+                    <p class="lede" data-i18n="services.exchange.desc">بيع وشراء العملات الرئيسية والنادرة بأسعار تنافسية معلنة داخل الفرع، مع تنفيذ فوري وإيصال رسمي لكل عملية.</p>
+                    <ul class="ticks">
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg><span data-i18n="services.exchange.point1">الدولار الأمريكي، اليورو، الجنيه الإسترليني والعملات الرئيسية</span></li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg><span data-i18n="services.exchange.point2">العملات الخليجية: الريال السعودي، الدرهم الإماراتي، الدينار الكويتي</span></li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg><span data-i18n="services.exchange.point3">السعر المعلن هو السعر المنفَّذ — بلا عمولات خفية</span></li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg><span data-i18n="services.exchange.point4">إيصال رسمي موثّق لكل عملية</span></li>
+                    </ul>
+                </div>
+                <div class="split__media reveal">
+                    <img src="https://egexchange.com/assets/branch-images/Nahas.jpeg" alt="صرف العملات الأجنبية — المصرية للصرافة" loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        <section class="section section--wash" id="advisory">
+            <div class="wrap split">
+                <div class="split__media reveal">
+                    <img src="https://egexchange.com/assets/branch-images/Abbas.jpeg" alt="متابعة الأسعار والاستشارة — المصرية للصرافة" loading="lazy">
+                </div>
+                <div class="split__body reveal">
+                    <span class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="8" r="6"/><path d="M18.1 10.4a6 6 0 1 1-8.7 7.7"/><path d="M7 6h1.5a1.5 1.5 0 0 1 0 3H8a1.5 1.5 0 0 0 0 3h1.5"/><path d="M8 5v1M8 12v1"/></svg></span>
+                    <h2 class="h2" data-i18n="services.advisory.title">متابعة الأسعار والاستشارة</h2>
+                    <p class="lede" data-i18n="services.advisory.desc">فريق الفروع يساعدك على اختيار توقيت وعملة التنفيذ الأنسب لحجم عمليتك، دون أي التزام.</p>
+                    <ul class="ticks">
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg><span data-i18n="services.advisory.point1">أسعار محدّثة معلنة داخل كل فرع</span></li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg><span data-i18n="services.advisory.point2">إرشاد حول العملة الأنسب لوجهتك</span></li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg><span data-i18n="services.advisory.point3">توضيح المستندات المطلوبة قبل الزيارة</span></li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg><span data-i18n="services.advisory.point4">الرد على الاستفسارات هاتفياً قبل الحضور</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="section">
+            <div class="wrap">
+                <div class="sec-head reveal">
+                    <span class="eyebrow" data-i18n="faq.title">أسئلة شائعة</span>
+                    <h2 class="h2" data-i18n="faq.subtitle">قبل زيارتك للفرع</h2>
+                </div>
+                <div class="faq reveal">
+                    <details><summary data-i18n="faq.q1">ما المستندات المطلوبة لإجراء عملية صرف؟</summary><p data-i18n="faq.a1">يلزم تقديم أصل بطاقة الرقم القومي سارية للعملاء المصريين، أو جواز السفر لغير المصريين. قد تُطلب مستندات إضافية للمبالغ الكبيرة وفقاً لتعليمات البنك المركزي المصري وقواعد مكافحة غسل الأموال.</p></details>
+                    <details><summary data-i18n="faq.q2">هل الأسعار المعروضة على الموقع نهائية؟</summary><p data-i18n="faq.a2">الأسعار المنشورة استرشادية وتخضع للتغيّر خلال اليوم. السعر المعتمد هو السعر المعلن داخل الفرع وقت تنفيذ العملية.</p></details>
+                    <details><summary data-i18n="faq.q3">هل توجد عمولة إضافية على العملية؟</summary><p data-i18n="faq.a3">لا. السعر المعلن داخل الفرع هو السعر المنفَّذ، دون أي عمولات أو رسوم خفية تُضاف عند الشباك.</p></details>
+                    <details><summary data-i18n="faq.q5">ما مواعيد العمل في أيام الجمعة؟</summary><p data-i18n="faq.a5">معظم فروع القاهرة والجيزة تعمل من 2 ظهراً حتى 11 مساءً يوم الجمعة، بينما تختلف المواعيد في فروع الصعيد. راجع صفحة الفروع لمعرفة مواعيد كل فرع بدقة.</p></details>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" style="padding-top:0">
+            <div class="wrap">
+                <div class="cta-band reveal">
+                    <svg class="cta-band__pattern" aria-hidden="true" preserveAspectRatio="xMidYMid slice" viewBox="0 0 600 400">
+                        <defs><pattern id="pwc3" width="78" height="78" patternUnits="userSpaceOnUse" patternTransform="rotate(0)"><g transform="translate(7 7) scale(0.64)" fill="none" stroke="#D7B25C" stroke-width="3.4" stroke-linejoin="round"><path d="M55.8 16.7H71.3V52.7H55.8V26.7H47.5Z"/><path d="M55.8 16.7H71.3V52.7H55.8V26.7H47.5Z" transform="rotate(90 50 50)"/><path d="M55.8 16.7H71.3V52.7H55.8V26.7H47.5Z" transform="rotate(180 50 50)"/><path d="M55.8 16.7H71.3V52.7H55.8V26.7H47.5Z" transform="rotate(270 50 50)"/></g></pattern></defs>
+                        <rect width="600" height="400" fill="url(#pwc3)"/>
+                    </svg>
+                    <div>
+                        <h2 class="h2" data-i18n="services.cta.title">جاهز لتنفيذ عمليتك؟</h2>
+                        <p data-i18n="services.cta.subtitle">اعثر على أقرب فرع إليك واطّلع على مواعيده وأرقام التواصل المباشرة.</p>
+                    </div>
+                    <a class="btn btn--light" href="#/branches">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                        <span data-i18n="services.cta.button">اعرض الفروع</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </section>
+    <!-- END PAGE: SERVICES -->
+
+
+    <!-- ============================================================ -->
+    <!-- PAGE: BRANCHES -->
+    <!-- ============================================================ -->
+    <section class="page" data-page="branches">
+
+        <section class="phero">
+            <svg class="phero__pattern" aria-hidden="true" preserveAspectRatio="xMidYMid slice" viewBox="0 0 600 400">
+                <defs>
+                    <pattern id="pwb" width="78" height="78" patternUnits="userSpaceOnUse" patternTransform="rotate(0)">
+                        <g transform="translate(7 7) scale(0.64)" fill="none" stroke="#D7B25C" stroke-width="3.4" stroke-linejoin="round">
+                            <path d="M55.8 16.7H71.3V52.7H55.8V26.7H47.5Z"/>
+                            <path d="M55.8 16.7H71.3V52.7H55.8V26.7H47.5Z" transform="rotate(90 50 50)"/>
+                            <path d="M55.8 16.7H71.3V52.7H55.8V26.7H47.5Z" transform="rotate(180 50 50)"/>
+                            <path d="M55.8 16.7H71.3V52.7H55.8V26.7H47.5Z" transform="rotate(270 50 50)"/>
+                        </g>
+                    </pattern>
+                </defs>
+                <rect width="600" height="400" fill="url(#pwb)"/>
+            </svg>
+            <div class="wrap phero__inner">
+                <nav class="crumb">
+                    <a href="#/home" data-i18n="nav.home">الرئيسية</a>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+                    <span data-i18n="branches.breadcrumb">الفروع</span>
+                </nav>
+                <h1 data-i18n="branches.title">نحن في خدمتك أينما كنت</h1>
+                <p data-i18n="branches.subtitle">26 فرعاً تمتد من القاهرة الكبرى إلى صعيد مصر والدلتا — ابحث بالاسم أو المنطقة، أو صفِّ النتائج حسب المحافظة.</p>
+            </div>
+        </section>
+
+        <section class="trust">
+            <div class="wrap">
+                <div class="trust__grid">
+                    <div class="trust__item">
+                        <b id="branchesTotalCount" data-i18n="branches.stats.count">26</b>
+                        <span data-i18n="branches.stats.branches">فرعاً</span>
+                    </div>
+            
+                    <div class="trust__item">
+    <b>10</b>
+    <span data-i18n="branches.stats.governorates">محافظات</span>
+</div>
+
+                    <div class="trust__item">
+                        <b data-i18n="branches.stats.hours">12 ساعة</b>
+                        <span data-i18n="branches.stats.service">خدمة يومياً</span>
+                    </div>
+                    <div class="trust__item">
+                        <b data-i18n="branches.stats.friday">الجمعة</b>
+                        <span data-i18n="branches.stats.friday_label">خدمة في معظم الفروع</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="wrap">
+                <div class="filters">
+                    <label class="field">
+                        <span class="skip" data-i18n="branches.search.placeholder">ابحث عن فرع</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                        <input type="search" id="branchSearch" placeholder="ابحث باسم الفرع أو المنطقة أو الشارع…" autocomplete="off">
+                    </label>
+                    <label class="field">
+                        <span class="skip" data-i18n="branches.filter.all">تصفية حسب المحافظة</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M7 12h10M10 18h4"/></svg>
+                        <select id="govFilter"><option value="" data-i18n="branches.filter.all">كل المحافظات</option></select>
+                    </label>
+                    <div class="filters__count" id="branchCount"><b>26</b> <span data-i18n="branches.count.plural">فرع</span></div>
+                </div>
+
+                <div class="branch-layout">
+                    <div class="branch-list" id="branchList"></div>
+                    <div class="map-panel">
+                        <div class="map-panel__bar">
+                            <span data-i18n="branches.map.label">الفروع المعروضة: <b id="mapLabel">كل المحافظات</b></span>
+                            <span data-i18n="branches.map.hint">اضغط على أي علامة لعرض التفاصيل</span>
+                        </div>
+                        <div id="map"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </section>
+    <!-- END PAGE: BRANCHES -->
+
+
+    <!-- ============================================================ -->
+    <!-- PAGE: CONTACT -->
+    <!-- ============================================================ -->
+    <section class="page" data-page="contact">
+
+        <section class="phero">
+            <svg class="phero__pattern" aria-hidden="true" preserveAspectRatio="xMidYMid slice" viewBox="0 0 600 400">
+                <defs>
+                    <pattern id="pwk" width="78" height="78" patternUnits="userSpaceOnUse" patternTransform="rotate(0)">
+                        <g transform="translate(7 7) scale(0.64)" fill="none" stroke="#D7B25C" stroke-width="3.4" stroke-linejoin="round">
+                            <path d="M55.8 16.7H71.3V52.7H55.8V26.7H47.5Z"/>
+                            <path d="M55.8 16.7H71.3V52.7H55.8V26.7H47.5Z" transform="rotate(90 50 50)"/>
+                            <path d="M55.8 16.7H71.3V52.7H55.8V26.7H47.5Z" transform="rotate(180 50 50)"/>
+                            <path d="M55.8 16.7H71.3V52.7H55.8V26.7H47.5Z" transform="rotate(270 50 50)"/>
+                        </g>
+                    </pattern>
+                </defs>
+                <rect width="600" height="400" fill="url(#pwk)"/>
+            </svg>
+            <div class="wrap phero__inner">
+                <nav class="crumb">
+                    <a href="#/home" data-i18n="nav.home">الرئيسية</a>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+                    <span data-i18n="contact.breadcrumb">تواصل معنا</span>
+                </nav>
+                <h1 data-i18n="contact.title">تحدّث إلينا مباشرة</h1>
+                <p data-i18n="contact.subtitle">سواء كان استفساراً عن سعر، أو ترتيباً مسبقاً لعملية كبيرة، أو ملاحظة على خدمة قدّمها أحد فروعنا — نحن نستمع.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="wrap grid-2" style="align-items:start">
+                <div class="card reveal" style="padding:34px">
+                    <h2 class="h3" style="margin-bottom:6px" data-i18n="contact.form.title">أرسل رسالة</h2>
+                    <p class="small" style="color:var(--muted);margin-bottom:24px" data-i18n="contact.form.note">نرد عادةً خلال يوم عمل واحد.</p>
+                    <form class="form-grid" id="contactForm" novalidate>
+                        <div class="form-field">
+                            <label for="cf-name" data-i18n="contact.form.name">الاسم بالكامل</label>
+                            <input id="cf-name" name="name" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="cf-phone" data-i18n="contact.form.phone">رقم الهاتف</label>
+                            <input id="cf-phone" name="phone" type="tel" dir="ltr" required>
+                        </div>
+                        <div class="form-field span-2">
+                            <label for="cf-email" data-i18n="contact.form.email">البريد الإلكتروني</label>
+                            <input id="cf-email" name="email" type="email" dir="ltr">
+                        </div>
+                        <div class="form-field span-2">
+                            <label for="cf-topic" data-i18n="contact.form.topic">موضوع الرسالة</label>
+                            <select id="cf-topic" name="topic">
+                                <option data-i18n="contact.topic.rate">استفسار عن سعر عملة</option>
+                                <option data-i18n="contact.topic.corporate">خدمات الشركات والمبالغ الكبيرة</option>
+                                <option data-i18n="contact.topic.branch">استفسار عن فرع أو مواعيد العمل</option>
+                                <option data-i18n="contact.topic.complaint">شكوى أو ملاحظة على الخدمة</option>
+                                <option data-i18n="contact.topic.other">موضوع آخر</option>
+                            </select>
+                        </div>
+                        <div class="form-field span-2">
+                            <label for="cf-msg" data-i18n="contact.form.message">الرسالة</label>
+                            <textarea id="cf-msg" name="message" required></textarea>
+                        </div>
+                        <div class="span-2">
+                            <button class="btn btn--primary btn--block" type="submit">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <rect x="2" y="4" width="20" height="16" rx="2"/>
+                                    <path d="m22 7-10 6L2 7"/>
+                                </svg>
+                                <span data-i18n="contact.form.submit">إرسال الرسالة</span>
+                            </button>
+                        </div>
+                        <p class="span-2 small" style="color:var(--muted);margin:0" data-i18n="contact.form.security">لأمانك: لا ترسل أرقام حسابات أو بيانات بطاقات عبر هذا النموذج.</p>
+                    </form>
+                </div>
+
+                <div class="info-card reveal">
+                    <svg class="info-card__pattern" aria-hidden="true" preserveAspectRatio="xMidYMid slice" viewBox="0 0 600 400">
+                        <defs>
+                            <pattern id="pwi" width="78" height="78" patternUnits="userSpaceOnUse" patternTransform="rotate(0)">
+                                <g transform="translate(7 7) scale(0.64)" fill="none" stroke="#D7B25C" stroke-width="3.4" stroke-linejoin="round">
+                                    <path d="M55.8 16.7H71.3V52.7H55.8V26.7H47.5Z"/>
+                                    <path d="M55.8 16.7H71.3V52.7H55.8V26.7H47.5Z" transform="rotate(90 50 50)"/>
+                                    <path d="M55.8 16.7H71.3V52.7H55.8V26.7H47.5Z" transform="rotate(180 50 50)"/>
+                                    <path d="M55.8 16.7H71.3V52.7H55.8V26.7H47.5Z" transform="rotate(270 50 50)"/>
+                                </g>
+                            </pattern>
+                        </defs>
+                        <rect width="600" height="400" fill="url(#pwi)"/>
+                    </svg>
+                    <h3 class="h3" data-i18n="contact.info.title">الفرع الرئيسي</h3>
+                    <ul>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                            <div>
+                                <b data-i18n="contact.info.address">العنوان</b>
+                                <span data-i18n="contact.info.address.value">6 شارع البستان، التحرير، القاهرة</span>
+                            </div>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/>
+                            </svg>
+                            <div>
+                                <b data-i18n="contact.info.phone">الهاتف</b>
+                                <span dir="ltr">02 25746100</span>
+                            </div>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <rect x="2" y="4" width="20" height="16" rx="2"/>
+                                <path d="m22 7-10 6L2 7"/>
+                            </svg>
+                            <div>
+                                <b data-i18n="contact.info.email">البريد الإلكتروني</b>
+                                <span dir="ltr">info@egexchange.com</span>
+                            </div>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 6v6l4 2"/>
+                            </svg>
+                            <div>
+                                <b data-i18n="contact.info.hours">مواعيد العمل</b>
+                                <span data-i18n="contact.info.hours.value">السبت – الخميس: 9 صباحاً – 11 مساءً<br>الجمعة: 2 ظهراً – 11 مساءً</span>
+                            </div>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M3 21h18"/>
+                                <path d="M5 21V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v16"/>
+                                <path d="M15 9h4a2 2 0 0 1 2 2v10"/>
+                                <path d="M9 7h2M9 11h2M9 15h2"/>
+                            </svg>
+                            <div>
+                                <b data-i18n="contact.info.branches">باقي الفروع</b>
+                                <span data-i18n="contact.info.branches.value">26 فرعاً في 10 محافظات — <a href="#/branches" style="text-decoration:underline">اعرض الخريطة</a></span>
+                            </div>
+                        </li>
+                    </ul>
+                    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px">
+                        <a class="btn btn--light btn--sm" href="tel:+20225746100">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/>
+                            </svg>
+                            <span data-i18n="contact.call">اتصل الآن</span>
+                        </a>
+                        <a class="btn btn--outline-light btn--sm" href="https://wa.me/20225746100" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.1l-.9 1.1c-.2.2-.4.2-.6.1a8 8 0 0 1-3.9-3.4c-.2-.3 0-.5.1-.6l.6-.7c.2-.2.2-.4.1-.6l-.8-2c-.2-.5-.4-.4-.6-.4H8c-.2 0-.6.1-.9.4-.3.4-1.1 1.1-1.1 2.7s1.1 3.1 1.3 3.3c.2.2 2.3 3.6 5.6 4.9 2.8 1.1 3.3.9 3.9.8.6-.1 1.9-.8 2.2-1.5.3-.8.3-1.4.2-1.5l-.7-.3Z"/>
+                                <path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Z"/>
+                            </svg>
+                            <span data-i18n="contact.whatsapp">واتساب</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section--wash" style="padding-top:0;background:transparent">
+            <div class="wrap">
+                <div style="border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--line);box-shadow:var(--sh-2)">
+                    <iframe title="موقع الفرع الرئيسي على الخريطة" style="width:100%;height:420px;border:0;display:block"
+                        loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                        src="https://www.openstreetmap.org/export/embed.html?bbox=31.2315%2C30.0430%2C31.2415%2C30.0490&amp;layer=mapnik&amp;marker=30.04599%2C31.23651"></iframe>
+                </div>
+            </div>
+        </section>
+
+    </section>
+    <!-- END PAGE: CONTACT -->
+
+</div>
+<!-- END: MAIN CONTENT -->
+
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+    <div class="wrap">
+        <div class="footer__grid">
+            <div class="footer__about">
+                <a class="logo logo--light" href="#/home" aria-label="المصرية للصرافة — الصفحة الرئيسية">
+                    <svg class="logo__mark" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+                        <g fill="currentColor">
+                            <path d="M55.8 16.7H71.3V52.7H55.8V26.7H47.5Z"/>
+                            <path d="M55.8 16.7H71.3V52.7H55.8V26.7H47.5Z" transform="rotate(90 50 50)"/>
+                            <path d="M55.8 16.7H71.3V52.7H55.8V26.7H47.5Z" transform="rotate(180 50 50)"/>
+                            <path d="M55.8 16.7H71.3V52.7H55.8V26.7H47.5Z" transform="rotate(270 50 50)"/>
+                        </g>
+                    </svg>
+                    <span class="logo__type">
+                        <span class="logo__ar" data-i18n="site.name">المصرية للصرافة</span>
+                        <span class="logo__en" data-i18n="site.name.en">Egyptian Exchange</span>
+                    </span>
+                </a>
+                <p data-i18n="footer.about">أول شركة صرافة في مصر، تحمل الترخيص رقم 1 من البنك المركزي المصري منذ تأسيسها عام 1991. إحدى شركات المزلاوي جروب.</p>
+                <div class="social">
+                    <a href="#" aria-label="فيسبوك"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 9V7.5A1.5 1.5 0 0 1 15.5 6H17V3h-2.5A4.5 4.5 0 0 0 10 7.5V9H8v3h2v9h4v-9h2.5l.5-3H14Z"/></svg></a>
+                    <a href="https://wa.me/20225746100" aria-label="واتساب"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.1l-.9 1.1c-.2.2-.4.2-.6.1a8 8 0 0 1-3.9-3.4c-.2-.3 0-.5.1-.6l.6-.7c.2-.2.2-.4.1-.6l-.8-2c-.2-.5-.4-.4-.6-.4H8c-.2 0-.6.1-.9.4-.3.4-1.1 1.1-1.1 2.7s1.1 3.1 1.3 3.3c.2.2 2.3 3.6 5.6 4.9 2.8 1.1 3.3.9 3.9.8.6-.1 1.9-.8 2.2-1.5.3-.8.3-1.4.2-1.5l-.7-.3Z"/><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Z"/></svg></a>
+                </div>
+            </div>
+            <div>
+                <h4 data-i18n="footer.quick_links">روابط سريعة</h4>
+                <ul class="footer__links">
+                    <li><a href="#/home" data-i18n="nav.home">الرئيسية</a></li>
+                    <li><a href="#/about" data-i18n="nav.about">عن الشركة</a></li>
+                    <li><a href="#/services" data-i18n="nav.services">خدماتنا</a></li>
+                    <li><a href="#/branches" data-i18n="nav.branches">الفروع</a></li>
+                    <li><a href="#/contact" data-i18n="nav.contact">تواصل معنا</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 data-i18n="footer.services">خدماتنا</h4>
+                <ul class="footer__links">
+                    <li><a href="#/services--exchange" data-i18n="services.exchange.title">صرف العملات الأجنبية</a></li>
+                    <li><a href="#/services--advisory" data-i18n="services.advisory.title">استشارات أسعار الصرف</a></li>
+                    <li><a href="#/branches" data-i18n="services.network.title">شبكة الفروع</a></li>
+                    <li><a href="#/about" data-i18n="services.experience.title">خبرة منذ 1991</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 data-i18n="footer.contact">تواصل معنا</h4>
+                <ul class="footer__contact">
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                        <span data-i18n="contact.info.address.value">6 شارع البستان، التحرير، القاهرة</span>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/>
+                        </svg>
+                        <a href="tel:+20225746100" dir="ltr">02 25746100</a>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <rect x="2" y="4" width="20" height="16" rx="2"/>
+                            <path d="m22 7-10 6L2 7"/>
+                        </svg>
+                        <a href="mailto:info@egexchange.com">info@egexchange.com</a>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                        <span data-i18n="contact.info.hours.value">السبت – الخميس: 9 صباحاً – 11 مساءً<br>الجمعة: 2 ظهراً – 11 مساءً</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer__bar">
+            <span data-i18n="footer.copyright">© 2026 المصرية للصرافة — إحدى شركات المزلاوي جروب. جميع الحقوق محفوظة.</span>
+            <span data-i18n="footer.license">مرخّصة من البنك المركزي المصري</span>
+        </div>
+    </div>
+</footer>
+
+<!-- ========== FLOATING RAIL ========== -->
+<aside class="rail" aria-label="روابط سريعة">
+    <a href="#/branches" data-tip="الفروع">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+            <circle cx="12" cy="10" r="3"/>
+        </svg>
+    </a>
+    <a href="tel:+20225746100" data-tip="اتصل بنا">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/>
+        </svg>
+    </a>
+    <a class="is-wa" href="https://wa.me/20225746100" target="_blank" rel="noopener" data-tip="واتساب">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.1l-.9 1.1c-.2.2-.4.2-.6.1a8 8 0 0 1-3.9-3.4c-.2-.3 0-.5.1-.6l.6-.7c.2-.2.2-.4.1-.6l-.8-2c-.2-.5-.4-.4-.6-.4H8c-.2 0-.6.1-.9.4-.3.4-1.1 1.1-1.1 2.7s1.1 3.1 1.3 3.3c.2.2 2.3 3.6 5.6 4.9 2.8 1.1 3.3.9 3.9.8.6-.1 1.9-.8 2.2-1.5.3-.8.3-1.4.2-1.5l-.7-.3Z"/>
+            <path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Z"/>
+        </svg>
+    </a>
+</aside>
+
+<!-- ========== BACK TO TOP ========== -->
+<button class="to-top" id="toTop" aria-label="العودة لأعلى">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 19V5"/>
+        <path d="m5 12 7-7 7 7"/>
+    </svg>
+</button>
+
+<!-- ========== JAVASCRIPT ========== --><!-- JavaScript -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script src="js/config.js"></script>
+<script src="js/lang.js"></script>
+<script src="js/currencies.js"></script>  <!-- ← ضيف ده -->
+<script src="js/main.js"></script>
+<script src="js/api.js"></script>
+<script src="js/branches.js"></script>
+<script src="js/converter.js"></script>
+<script src="js/navigation.js"></script>
+
+<!-- ========== APP WRAPPER: Android back-button handling ========== -->
+<script>
+(function () {
+  document.addEventListener('deviceready', function () {
+    if (!window.Capacitor || !window.Capacitor.Plugins || !window.Capacitor.Plugins.App) return;
+    var CapApp = window.Capacitor.Plugins.App;
+    CapApp.addListener('backButton', function () {
+      var isHome = !location.hash || location.hash === '#/' || location.hash === '#/home';
+      if (!isHome && window.history.length > 1) {
+        window.history.back();
+      } else {
+        CapApp.exitApp();
+      }
+    });
+  }, false);
+})();
+</script>
+</body>
+</html>

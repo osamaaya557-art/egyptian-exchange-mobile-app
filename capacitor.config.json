@@ -1,0 +1,20 @@
+{
+  "appId": "com.elmezlawyholding.exchange",
+  "appName": "المصرية للصرافة",
+  "webDir": "www",
+  "backgroundColor": "#000094",
+  "server": {
+    "androidScheme": "https",
+    "allowNavigation": [
+      "wa.me",
+      "*.openstreetmap.org",
+      "egexchange.com",
+      "*.egexchange.com",
+      "x.elmezlawyholding.com",
+      "*.elmezlawyholding.com"
+    ]
+  },
+  "android": {
+    "allowMixedContent": false
+  }
+}

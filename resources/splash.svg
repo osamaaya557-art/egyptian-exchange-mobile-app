@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <rect width="1024" height="1024" fill="#000094"/>
+  <g fill="none" stroke="#D7B25C" stroke-width="24" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M360 280h224v320H360z"/>
+    <path d="M360 280h224v320H360z" transform="rotate(90 512 512)"/>
+    <path d="M360 280h224v320H360z" transform="rotate(180 512 512)"/>
+    <path d="M360 280h224v320H360z" transform="rotate(270 512 512)"/>
+  </g>
+  <text x="512" y="730" font-family="Arial, sans-serif" font-size="96" font-weight="bold" fill="#D7B25C" text-anchor="middle">EGX</text>
+</svg>

@@ -1,0 +1,211 @@
+# Codemagic CI/CD Configuration
+# =================================
+# Project: Egyptian Exchange Mobile App
+# Builder: Capacitor 6 + Codemagic
+#
+# BEFORE YOU START - Set these environment variables in Codemagic UI:
+#
+# Android:
+#   - KEYSTORE_PASSWORD    : Password for your keystore file
+#   - KEY_ALIAS            : Alias name of your key (e.g. "exchange")
+#   - KEY_PASSWORD         : Password for the key (usually same as keystore)
+#   - PLAY_STORE_JSON_KEY  : Full JSON content of Google Play Service Account key
+#   - UPLOAD_KEYSTORE      : Base64-encoded .jks keystore file
+#
+# iOS:
+#   - APPSTORE_KEY_ID      : App Store Connect API Key ID (e.g. "2X9R4HXF34")
+#   - APPSTORE_ISSUER_ID    : App Store Connect API Issuer ID (UUID)
+#   - APPSTORE_PRIVATE_KEY : App Store Connect API private key content
+#
+# Enable "Automatic code signing" in Codemagic project settings for iOS.
+
+workflows:
+
+  # ====================================================================
+  # Android Debug APK - For testing
+  # ====================================================================
+  android-debug:
+    name: Android Debug APK
+    max_build_duration: 30
+    environment:
+      node: 20.11.0
+      vars:
+        PACKAGE_NAME: "com.elmezlawyholding.exchange"
+    scripts:
+      - name: Install dependencies
+        script: npm install
+      - name: Add Android platform (first run only)
+        script: |
+          if [ ! -d "android" ]; then
+            npx cap add android
+          fi
+      - name: Sync web assets into Android project
+        script: npx cap sync android
+      - name: Build debug APK
+        script: |
+          cd android
+          chmod +x gradlew
+          ./gradlew assembleDebug
+    artifacts:
+      - android/app/build/outputs/**/*.apk
+      - android/app/build/outputs/**/mapping.txt
+    publishing:
+      email:
+        recipients:
+          - elmazelawy2010@hotmail.com
+
+  # ====================================================================
+  # Android Release (AAB) - For Google Play Store
+  # ====================================================================
+  android-release:
+    name: Android Release (Google Play)
+    max_build_duration: 40
+    trigger:
+      publish:
+        branch: build
+    environment:
+      node: 20.11.0
+      vars:
+        PACKAGE_NAME: "com.elmezlawyholding.exchange"
+        APP_VERSION: "1.0.0"
+        VERSION_CODE: "1"
+    scripts:
+      - name: Install dependencies
+        script: npm install
+      - name: Add Android platform (first run only)
+        script: |
+          if [ ! -d "android" ]; then
+            npx cap add android
+          fi
+      - name: Sync web assets into Android project
+        script: npx cap sync android
+      - name: Decode keystore file
+        script: |
+          echo "$UPLOAD_KEYSTORE" | base64 --decode > /tmp/upload.keystore
+      - name: Create gradle.properties with signing config
+        script: |
+          cd android
+          cat > gradle.properties << EOF
+          MYAPP_RELEASE_STORE_FILE=/tmp/upload.keystore
+          MYAPP_RELEASE_STORE_PASSWORD=$KEYSTORE_PASSWORD
+          MYAPP_RELEASE_KEY_ALIAS=$KEY_ALIAS
+          MYAPP_RELEASE_KEY_PASSWORD=$KEY_PASSWORD
+          EOF
+      - name: Patch build.gradle with signing config
+        script: |
+          cd android
+          python3 << 'PYEOF'
+          import re
+          with open('app/build.gradle', 'r') as f:
+              content = f.read()
+          # Add signingConfig to release build type
+          content = content.replace(
+              'minifyEnabled false',
+              'signingConfig signingConfigs.release\n            minifyEnabled false'
+          )
+          # Insert signingConfigs block before buildTypes
+          signing_block = """    signingConfigs {
+        release {
+            storeFile file(MYAPP_RELEASE_STORE_FILE)
+            storePassword MYAPP_RELEASE_STORE_PASSWORD
+            keyAlias MYAPP_RELEASE_KEY_ALIAS
+            keyPassword MYAPP_RELEASE_KEY_PASSWORD
+        }
+    }
+"""
+          content = content.replace('    buildTypes {', signing_block + '    buildTypes {', 1)
+          with open('app/build.gradle', 'w') as f:
+              f.write(content)
+          print("build.gradle patched with signing config")
+          PYEOF
+      - name: Update version code and name
+        script: |
+          cd android
+          sed -i "s/versionCode 1/versionCode $VERSION_CODE/" app/build.gradle
+          sed -i "s/versionName \"1.0\"/versionName \"$APP_VERSION\"/" app/build.gradle
+      - name: Build release AAB
+        script: |
+          cd android
+          chmod +x gradlew
+          ./gradlew bundleRelease
+      - name: List generated artifacts
+        script: |
+          find android/app/build/outputs -name "*.aab" -type f
+    artifacts:
+      - android/app/build/outputs/bundle/release/**/*.aab
+    publishing:
+      google_play:
+        credentials:
+          json_key: $PLAY_STORE_JSON_KEY
+        track: internal
+        status: draft
+        artifacts:
+          - android/app/build/outputs/bundle/release/**/*.aab
+        submit_as_draft: true
+      email:
+        recipients:
+          - elmazelawy2010@hotmail.com
+
+  # ====================================================================
+  # iOS Release (IPA) - For App Store
+  # ====================================================================
+  ios-release:
+    name: iOS Release (App Store)
+    max_build_duration: 40
+    trigger:
+      publish:
+        branch: build
+    environment:
+      node: 20.11.0
+      os: latest
+      xcode: latest
+      vars:
+        PACKAGE_NAME: "com.elmezlawyholding.exchange"
+        APP_VERSION: "1.0.0"
+      ios_signing:
+        system_config: false
+        wait_for_values: true
+        automatic_code_signing: true
+    scripts:
+      - name: Install dependencies
+        script: npm install
+      - name: Add iOS platform (first run only)
+        script: |
+          if [ ! -d "ios" ]; then
+            npx cap add ios
+          fi
+      - name: Sync web assets into iOS project
+        script: npx cap sync ios
+      - name: Increment build number
+        script: |
+          BUILD_NUMBER=$(( $(date +%s) / 60 ))
+          plutil -replace CFBundleVersion -string "$BUILD_NUMBER" ios/App/App/Info.plist
+      - name: Build iOS IPA
+        script: |
+          cd ios
+          xcodebuild -workspace App.xcworkspace \
+            -scheme App \
+            -configuration Release \
+            -archivePath "$FCI_BUILD_ARTIFACTS_DIR/App.xcarchive" \
+            -destination "generic/platform=iOS" \
+            -allowProvisioningUpdates \
+            clean archive
+          xcodebuild -exportArchive \
+            -archivePath "$FCI_BUILD_ARTIFACTS_DIR/App.xcarchive" \
+            -exportPath "$FCI_BUILD_ARTIFACTS_DIR" \
+            -exportOptionsPlist ../export_options.plist
+    artifacts:
+      - $FCI_BUILD_ARTIFACTS_DIR/App.ipa
+    publishing:
+      app_store_connect:
+        api_key:
+          key_id: $APPSTORE_KEY_ID
+          issuer_id: $APPSTORE_ISSUER_ID
+          private_key: $APPSTORE_PRIVATE_KEY
+        app_identifier: "com.elmezlawyholding.exchange"
+        ipa_path: $FCI_BUILD_ARTIFACTS_DIR/App.ipa
+        submit_to_app_store: false
+        auto_restart_live: false
+      email:
+        recipients:
+          - elmazelawy2010@hotmail.com

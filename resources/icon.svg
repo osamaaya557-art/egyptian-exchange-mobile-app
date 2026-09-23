@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <rect width="1024" height="1024" rx="200" fill="#000094"/>
+  <g fill="none" stroke="#D7B25C" stroke-width="20" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M472 232h112v240H472z"/>
+    <path d="M472 232h112v240H472z" transform="rotate(90 528 528)"/>
+    <path d="M472 232h112v240H472z" transform="rotate(180 528 528)"/>
+    <path d="M472 232h112v240H472z" transform="rotate(270 528 528)"/>
+  </g>
+  <rect x="220" y="648" width="584" height="104" rx="52" fill="#D7B25C"/>
+  <text x="512" y="724" font-family="Arial, sans-serif" font-size="44" font-weight="bold" fill="#000094" text-anchor="middle">EGYPTIAN</text>
+</svg>
