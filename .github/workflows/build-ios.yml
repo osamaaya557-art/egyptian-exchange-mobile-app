@@ -21,12 +21,13 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Build Web App
-        run: npm run build --if-present
-
       - name: Sync Capacitor iOS
+        run: npx cap sync ios
+
+      - name: Install Pods
         run: |
-          npx cap sync ios
+          cd ios/App
+          pod install
 
       - name: Build Unsigned Xcode Project
         run: |
@@ -35,7 +36,9 @@ jobs:
             -sdk iphoneos \
             -configuration Release \
             -derivedDataPath build \
-            CODE_SIGNING_ALLOWED=NO
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY=""
 
       - name: Create Unsigned IPA Package
         run: |
