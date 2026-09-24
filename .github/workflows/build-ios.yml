@@ -22,11 +22,14 @@ jobs:
         run: npm install
 
       - name: Sync Capacitor iOS
-        run: npx cap sync ios
+        run: npx cap sync ios --no-pod-install
 
-      - name: Install Pods
+      - name: Configure Podfile and Install Pods
         run: |
           cd ios/App
+          echo "project 'App.xcodeproj'" > temp_podfile
+          cat Podfile >> temp_podfile
+          mv temp_podfile Podfile
           pod install
 
       - name: Build Unsigned Xcode Project
