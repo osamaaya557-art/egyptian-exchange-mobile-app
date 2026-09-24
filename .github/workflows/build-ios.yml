@@ -25,12 +25,7 @@ jobs:
         run: npm run build --if-present
 
       - name: Sync Capacitor iOS
-        run: npx cap sync ios --no-pod-install
-
-      - name: Install Pods
-        run: |
-          cd ios/App
-          pod install
+        run: npx cap sync ios
 
       - name: Build Unsigned Xcode Project
         run: |
