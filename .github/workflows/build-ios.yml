@@ -21,15 +21,16 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
+      - name: Build Web App
+        run: npm run build --if-present
+
       - name: Sync Capacitor iOS
         run: npx cap sync ios --no-pod-install
 
-      - name: Configure Podfile and Install Pods
+      - name: Fix Podfile and Install Pods
         run: |
           cd ios/App
-          echo "project 'App.xcodeproj'" > temp_podfile
-          cat Podfile >> temp_podfile
-          mv temp_podfile Podfile
+          printf "project 'App.xcodeproj'\n$(cat Podfile)" > Podfile
           pod install
 
       - name: Build Unsigned Xcode Project
